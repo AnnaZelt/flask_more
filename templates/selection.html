@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <b>Products:</b>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Buy</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td>{{ product["name"] }}</td>
+            <td>{{ product["price"] }} NIS</td>
+            <td>x{{ product["stock"] }}</td>
+            <td><a class="btn btn-primary" href="{{url_for('cart_index', selection = loop.index-1)}}">Add to cart</a></td>
+        </tr>
+        {% endfor %}
+    </table><hr>
+    <b>Items in cart:</b><br>
+    <table>
+            {% for product in cart:%}
+            <tr>
+                <th>{{ product["name"] }}</th>
+                <th>x{{ product["stock"] }}</th>
+            </tr>
+            {% endfor %}<br>
+    </table>
+    Total: {{total}} NIS
+</body>
+</html>
