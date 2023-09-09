@@ -37,10 +37,19 @@
             <td>{{ product["name"] }}</td>
             <td>{{ product["price"] }} NIS</td>
             <td>x{{ product["stock"] }}</td>
-            <td><a class="btn btn-primary" href="{{url_for('products_index', selection = loop.index-1)}}">Add to cart</a></td>
+            <td><a class="btn btn-primary" href="{{url_for('index', selection = loop.index-1)}}">Add to cart</a></td>
         </tr>
         {% endfor %}
     </table><hr>
-    <b>No items in cart.</b><br>
+    <b>Items in cart:</b><br>
+    <table>
+            {% for product in cart:%}
+            <tr>
+                <th>{{ product["name"] }}</th>
+                <th>x{{ product["stock"] }}</th>
+            </tr>
+            {% endfor %}<br>
+    </table><br>
+    Total: {{total}} NIS
 </body>
 </html>
